@@ -9,6 +9,7 @@ class ComicController extends Controller
 {
     public function index(Comic $comic)
     {
-        return $comic->get();
+        return view('comics.index')->with(['comics' => $comic->getpaginateByLimit()]);
     }
 }
+?>

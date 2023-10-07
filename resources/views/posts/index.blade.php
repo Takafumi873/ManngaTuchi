@@ -14,9 +14,11 @@
         <div class='comics'>
             @foreach ($comics as $comic)
             <div class='comic'>
-                <h2 class='title'>{{ $comic->title }}</h2>
-                <p class='overview'>{{ $comic->body }}</p>
-                <h3 class='released'>{{ $comic->created_at }}</h3>
+                <h2 class='title'>
+                    <a href="/posts/{{ $comic->id }}">{{ $comic->title}}</a>
+                </h2>
+                <p class='overview'>{{ $comic->overview }}</p>
+                <h3 class='released'>{{ $comic->released_at }}</h3>
             </div>
             @endforeach
         </div>

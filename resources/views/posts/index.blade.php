@@ -26,7 +26,7 @@
         <div class='paginate'>
             {{ $comics->links() }}
         </div>
-        <div>{{ Auth::user()->name }}</div>
+        <h4 class="username">username:{{ Auth::user()->name }}</h4>
     </body>
     </x-app-layout>
 </html>

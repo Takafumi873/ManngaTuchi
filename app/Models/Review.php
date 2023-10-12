@@ -15,6 +15,7 @@ class Review extends Model
         'title',
         'body',
         'comic_id',
+        'user_id',
         ];
         
     public function comic()

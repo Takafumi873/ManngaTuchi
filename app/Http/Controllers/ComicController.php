@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comic;
 use App\Models\Review;
+use App\Models\User;
 
 class ComicController extends Controller
 {
@@ -26,7 +27,9 @@ class ComicController extends Controller
     
     public function create(Comic $comic)
     {
-        return view('posts.create')->with(['comic'=>$comic]);
+        return view('posts.create')->with([
+            'comic'=>$comic,
+            ]);
     }
     
     public function delete(Review $review)

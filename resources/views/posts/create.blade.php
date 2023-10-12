@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    
+    <x-app-layout>
     <head>
         <meta charset="utf-8">
         <title>Review</title>
     </head>
-    <x-app-layout>
     <body>
         <h1>Comic　name</h1>
         <form action="/posts" method="POST">
@@ -17,8 +18,9 @@
             <h2>body</h2>
             <textarea name="review[body]" placeholder="面白かった。"></textarea>
         </div>
-        <input type="hidden" value="{{$comic->id}}" name="review[comic_id]"/>
-        <input type="submit" value="store"/>
+        <input type="hidden" value="{{ $comic->id }}" name="review[comic_id]">
+        <input type="hidden" value="{{ Auth::user()->id }}" name="review[user_id]">
+        <input type="submit" value="送信">
     </form>
     <div class="footer">
         <a href="/">戻る</a>

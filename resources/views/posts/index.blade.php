@@ -9,6 +9,7 @@
 
        
     </head>
+    <x-app-layout>
     <body class="antialiased">
         <h1>Comics</h1>
         <div class='comics'>
@@ -25,5 +26,7 @@
         <div class='paginate'>
             {{ $comics->links() }}
         </div>
+        <div>{{ Auth::user()->name }}</div>
     </body>
+    </x-app-layout>
 </html>

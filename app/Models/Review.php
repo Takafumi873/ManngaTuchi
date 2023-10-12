@@ -21,4 +21,9 @@ class Review extends Model
     {
         return $this->belongsTo(Comic::class);
     }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

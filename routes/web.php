@@ -14,8 +14,13 @@ use App\Http\Controllers\ReviewController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::group(['middleware' =>['auth']], function(){
 Route::get('/', [ComicController::class, 'index'])->name('index');
-
+Route::get('/posts/create/{comic}', [ComicController::class, 'create'])->name('create-post'); 
+Route::get('/posts/{comic}', [ComicController::class, 'show'])->name('show-post'); 
+Route::post('/posts/', [ReviewController::class, 'store'])->name('store-review'); 
+Route::delete('/posts/{review}', [ComicController::class, 'delete'])->name('delete-review'); 
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

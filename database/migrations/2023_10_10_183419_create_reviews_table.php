@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title',50);
             $table->string('body', 200);
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('comic_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

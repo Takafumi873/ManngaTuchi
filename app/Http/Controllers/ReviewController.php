@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\Comic;
+use App\Models\User;
 
 class ReviewController extends Controller
 {

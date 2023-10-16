@@ -9,7 +9,7 @@
     </head>
     <x-app-layout>
     <body class="antialiased">
-        <h1>a</h1>
+        <h1>Comics name</h1>
         <h1 class="title">
             {{ $comic->title }}
         </h1>

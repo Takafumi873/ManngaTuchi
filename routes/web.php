@@ -19,6 +19,7 @@ Route::get('/', [ComicController::class, 'index'])->name('index');
 Route::get('/posts/create/{comic}', [ComicController::class, 'create'])->name('create-post'); 
 Route::get('/posts/{comic}', [ComicController::class, 'show'])->name('show-post'); 
 Route::post('/posts/', [ReviewController::class, 'store'])->name('store-review'); 
+Route::post('/posts/like', [ComicController::class, 'like'])->name('comics.like');
 Route::delete('/posts/{review}', [ComicController::class, 'delete'])->name('delete-review'); 
 });
 

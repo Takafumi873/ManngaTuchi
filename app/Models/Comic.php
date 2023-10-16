@@ -18,7 +18,7 @@ class Comic extends Model
     
     public function getPaginateByLimit(int $limit_count = 2)
     {
-        return $this->orderBy('released_at', 'ASC')->paginate($limit_count);
+        return $this->withcount('likes')->orderBy('released_at', 'ASC')->paginate($limit_count);
     }
     
     public function reviews()
@@ -31,4 +31,12 @@ class Comic extends Model
         return $this->belongsToMany(User::class);
     }
     
+    public function likes()
+    {
+        return $this->hasMany('App\Models\Like');
+    }
+    
+    public function isLikedBy($user): bool {
+        return Like::where('user_id', $user->id)->where('comic_id', $this->id)->first() !==null;
+        }
 }

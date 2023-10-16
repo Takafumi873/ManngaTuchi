@@ -21,6 +21,20 @@
                 <p class='overview'>{{ $comic->overview }}</p>
                 <h3 class='released'>{{ $comic->released_at }}</h3>
             </div>
+            @auth
+            <!-- Post.phpに作ったisLikedByメソッドをここで使用 -->
+            @if (!$comic->isLikedBy(Auth::user()))
+                <span class="likes">
+                    <i class="fas fa-heart like-toggle" data-comic-id="{{ $comic->id }}"></i>
+                <span class="like-counter">{{$comic->likes_count}}</span>
+                </span><!-- /.likes -->
+            @else
+                <span class="likes">
+                    <i class="fas fa-heart heart like-toggle liked" data-comic-id="{{ $comic->id }}"></i>
+                <span class="like-counter">{{$comic->likes_count}}</span>
+                </span><!-- /.likes -->
+            @endif
+            @endauth
             @endforeach
         </div>
         <div class='paginate'>

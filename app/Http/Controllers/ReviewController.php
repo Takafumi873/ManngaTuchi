@@ -9,16 +9,6 @@ use App\Models\User;
 
 class ReviewController extends Controller
 {
-    public function index(Review $review)
-    {
-        return $review->get();
-    }
-    
-    public function show(Review $review)
-    {
-        return view('posts.show')->with(['review' => $review]);
-    }
-    
       public function store(Request $request, Review $review, comic $comic)
     {
         
@@ -30,3 +20,6 @@ class ReviewController extends Controller
         return redirect()->route('show-post',['comic' => $comicId ]);
     }
 }
+
+$month = Carbon::now()->addMonth(1)->format('m');
+$comics = Comic::whereMonth('created_at',$month)->get();

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComicController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ReviewController;
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,9 @@ use App\Http\Controllers\ReviewController;
 */
 Route::group(['middleware' =>['auth']], function(){
 Route::get('/', [ComicController::class, 'index'])->name('index');
-Route::get('/posts/create/{comic}', [ComicController::class, 'create'])->name('create-post'); 
+Route::get('/search', [SearchController::class, 'search'])->name('index.search');
+Route::get('/next', [ComicController::class, 'nextcomic'])->name('next');
+Route::get('/posts/create/{comic}', [ComicController::class, 'create'])->name('create-post');
 Route::get('/posts/{comic}', [ComicController::class, 'show'])->name('show-post'); 
 Route::post('/posts/', [ReviewController::class, 'store'])->name('store-review'); 
 Route::post('/posts/like', [ComicController::class, 'like'])->name('comics.like');

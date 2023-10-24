@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 
-class ComicSeeder extends Seeder
+class NextcomicSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,10 +16,10 @@ class ComicSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('comics')->insert([
-            'title' => '呪術回戦2巻',
+        DB::table('nextcomics')->insert([
+            'title' => '呪術回戦10巻',
             'overview' => '呪い',
-            'released_at' => '2023_10_20',   
+            'released_at' => '2023_11_20',   
             ]);
     }
 }

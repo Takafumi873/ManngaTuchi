@@ -20,6 +20,7 @@
                 </h2>
                 <p class='overview'>{{ $comic->overview }}</p>
                 <h3 class='released'>{{ $comic->released_at }}</h3>
+                <a href='/posts/notification/{{$comic->id}}'>購入予定</a>
             </div>
             @auth
             <!-- Post.phpに作ったisLikedByメソッドをここで使用 -->
@@ -36,10 +37,27 @@
             @endif
             @endauth
             @endforeach
+        <form action="{{route('index')}}">
+            <button type="submit" name="sort" value="1">人気ランキング</button>
+            <button type="submit" name="sort" value="">発売日順</button>
+        </form>
         </div>
         <div class='paginate'>
             {{ $comics->links() }}
         </div>
+        
+        <div>
+            <form action="{{ route('index') }}" method="GET">
+            
+            @csrf
+            
+                <input type="text" name="keyword" placeholder="検索ワード">
+                <input type="submit" name="検索">
+            </form>
+        </div>
+        
+         <a href='/next'>来月の発売予定</a>
+        
         <h4 class="username">username:{{ Auth::user()->name }}</h4>
     </body>
     </x-app-layout>

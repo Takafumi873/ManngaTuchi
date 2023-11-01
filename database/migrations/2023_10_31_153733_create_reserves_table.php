@@ -13,17 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comics', function (Blueprint $table){
+        Schema::create('reserves', function (Blueprint $table) {
             $table->id();
-            $table->string('title',50);
-            $table->string('overview', 200);
-            $table->smallInteger('comic_likes_count')->default(0);
-            $table->boolean('reserved')->default(0);
-            $table->date('released_at');
-            $table->string('image', 100)->nullable();
+            $table->foreignId('comic_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
-        //
     }
 
     /**
@@ -31,8 +26,5 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        //
-    }
+    
 };

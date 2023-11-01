@@ -36,7 +36,16 @@ class Comic extends Model
         return $this->hasMany('App\Models\Like');
     }
     
+    public function reserves()
+    {
+        return $this->hasMany('App\Models\Reserve');
+    }
+    
     public function isLikedBy($user): bool {
         return Like::where('user_id', $user->id)->where('comic_id', $this->id)->first() !==null;
+        }
+        
+    public function isReservedBy($user): bool {
+        return Reserve::where('user_id', $user->id)->where('comic_id', $this->id)->first() !==null;
         }
 }

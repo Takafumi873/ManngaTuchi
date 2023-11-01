@@ -20,7 +20,6 @@
                 </h2>
                 <p class='overview'>{{ $comic->overview }}</p>
                 <h3 class='released'>{{ $comic->released_at }}</h3>
-                <a href='/posts/notification/{{$comic->id}}'>購入予定</a>
             </div>
             @auth
             <!-- Post.phpに作ったisLikedByメソッドをここで使用 -->
@@ -33,6 +32,16 @@
                 <span class="likes">
                     <i class="fas fa-heart heart like-toggle liked" data-comic-id="{{ $comic->id }}"></i>
                 <span class="like-counter">{{$comic->likes_count}}</span>
+                </span><!-- /.likes -->
+            @endif
+            
+            @if (!$comic->isReservedBy(Auth::user()))
+                <span class="reserves">
+                    <i class="fas fa-circle reserve-toggle" data-comic-id="{{ $comic->id }}"></i>
+                </span><!-- /.likes -->
+            @else
+                <span class="reserves">
+                    <i class="fas fa-circle reserve-toggle reserved" data-comic-id="{{ $comic->id }}"></i>
                 </span><!-- /.likes -->
             @endif
             @endauth

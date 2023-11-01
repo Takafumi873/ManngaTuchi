@@ -8,6 +8,7 @@ use App\Models\Nextcomic;
 use App\Models\Review;
 use App\Models\User;
 use App\Models\Like;
+use App\Models\Reserve;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
@@ -17,6 +18,7 @@ class ComicController extends Controller
 {
     $sort = $request->get('sort');
     $keyword = $request->input('keyword');
+    $day = Carbon::now()->addDays(7)->format('d');
     
     // ユーザー情報を取得
     $user = auth()->user();
@@ -41,6 +43,18 @@ class ComicController extends Controller
     // ページネーションを適用してコミックを取得
     $comics = $comics->paginate(5);
 
+    $reserves = Reserve::where('user_id', $user->id)->get();
+    $reservedComics = [];
+    foreach($reserves as $reserve)
+    {
+        $reservedComic = Comic::find($reserve->comic_id);
+        $reservedComics[] = $reservedComic;
+    
+    }
+    $count = count($reservedComics);
+    dd($count);
+    
+    
     return view('posts.index', ['comics' => $comics]);
 }
 
@@ -128,6 +142,30 @@ class ComicController extends Controller
             'posts.index',[
                 'comics' => $comics->getpaginateByLimit(),    
             ]);
+    }
+    
+   public function reserve(Request $request, Comic $comic)
+    {
+        $user_id = Auth::user()->id;
+        $comic_id = $request->comic_id;
+        // dd($comic_id);
+        $already_reserved = Reserve::where('user_id', $user_id)->where('comic_id', $comic_id)->first();
+        
+        if (!$already_reserved) {
+            $reserve = new Reserve;
+            $reserve->comic_id = $comic_id;
+            $reserve->user_id = $user_id;
+            $reserve->save();
+        } else {
+            Reserve::where('comic_id', $comic_id)->where('user_id', $user_id)->delete();
+            
+        }
+        
+        return view(
+            'posts.index',[
+                'comics' => $comic->getpaginateByLimit(),    
+            ]);
+            
     }
 }
 ?>

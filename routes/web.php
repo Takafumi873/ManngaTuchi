@@ -21,6 +21,7 @@ Route::get('/search', [SearchController::class, 'search'])->name('index.search')
 Route::get('/next', [ComicController::class, 'nextcomic'])->name('next');
 Route::get('/posts/create/{comic}', [ComicController::class, 'create'])->name('create-post');
 Route::get('/posts/{comic}', [ComicController::class, 'show'])->name('show-post'); 
+Route::post('/posts/reserve', [ComicController::class, 'reserve']);
 Route::post('/posts/', [ReviewController::class, 'store'])->name('store-review'); 
 Route::post('/posts/like', [ComicController::class, 'like'])->name('comics.like');
 Route::delete('/posts/{review}', [ComicController::class, 'delete'])->name('delete-review'); 

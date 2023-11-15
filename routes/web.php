@@ -19,6 +19,7 @@ Route::group(['middleware' =>['auth']], function(){
 Route::get('/', [ComicController::class, 'index'])->name('index');
 Route::get('/search', [SearchController::class, 'search'])->name('index.search');
 Route::get('/try', [ComicController::class, 'updateComicData']);
+Route::get('/next', [ComicController::class, 'nextcomic'])->name('next');
 Route::get('/posts/create/{comic}', [ComicController::class, 'create'])->name('create-post');
 Route::get('/posts/{comic}', [ComicController::class, 'show'])->name('show-post'); 
 Route::post('/posts/reserve', [ComicController::class, 'reserve']);

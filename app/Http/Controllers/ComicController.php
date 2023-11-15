@@ -16,7 +16,16 @@ use Carbon\Carbon;
 
 class ComicController extends Controller
 {
-  
+   public function nextcomic(Request $request)
+{
+    $month = Carbon::now()->addMonth(1)->format('m');
+    
+    $comics = Comic::whereMonth('released_at', $month)
+              ->get();
+              
+    return view('posts.nextIndex', ['comics' => $comics]);
+}
+
     public function index(Request $request)
 {
     $sort = $request->get('sort');
@@ -56,7 +65,7 @@ class ComicController extends Controller
     $reserveComicIds = Reserve::where('user_id', $user->id)->pluck('comic_id')->toArray();
     
     $reservedComics = Comic::whereIn('id', $reserveComicIds)
-                            //->whereIn('released_at', $days)
+                            ->whereIn('released_at', $days)
                             ->get();
                             //dd($reservedComics);
     $count = count($reservedComics);

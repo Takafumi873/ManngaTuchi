@@ -1,33 +1,55 @@
 $(function () {
-    let like = $('.like-toggle'); //like-toggleのついたiタグを取得し代入。
-    let likeComicId; //変数を宣言
-    like.on('click', function () { //onはイベントハンドラー
-    
-      let $this = $(this); //this=イベントの発火した要素＝iタグを代入
+    // Likeの処理
+    let like = $('.like-toggle');
+    let likeComicId;
+    like.on('click', function () {
+      let $this = $(this);
       likeComicId = $this.data('comic-id');
-      //iタグに仕込んだdata-post-idの値を取得
-      //ajax処理スタート
       $.ajax({
-        headers: { //HTTPヘッダ情報をヘッダ名と値のマップで記述
+        headers: {
           'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-        },  //↑name属性がcsrf-tokenのmetaタグのcontent属性の値を取得
-        url: '/posts/like', //通信先アドレスで、このURLをあとでルートで設定します
-        method: 'POST', //HTTPメソッドの種別を指定します。1.9.0以前の場合はtype:を使用。
-        data: { //サーバーに送信するデータ
-          'comic_id': likeComicId //いいねされた投稿のidを送る
+        },
+        url: '/posts/like',
+        method: 'POST',
+        data: {
+          'comic_id': likeComicId
         },
       })
-      //通信成功した時の処理
       .done(function (data) {
-        console.log('success');
-        $this.toggleClass('liked'); //likedクラスのON/OFF切り替え。
+        console.log('like success');
+        $this.toggleClass('liked');
         $this.next('.like-counter').html(data.comic_likes_count);
       })
-      //通信失敗した時の処理
-
       .fail(function (jqXHR, textStatus, errorThrown) {
-    console.log('fail');
-    console.log(jqXHR.responseText);
-});
+        console.log('like fail');
+        console.log(jqXHR.responseText);
+      });
+    });
+
+    // Reserveの処理
+    let reserve = $('.reserve-toggle');
+    let reserveComicId;
+    reserve.on('click', function () {
+      let $this = $(this);
+      reserveComicId = $this.data('comic-id');
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/posts/reserve',
+        method: 'POST',
+        data: {
+          'comic_id': reserveComicId
+        },
+      })
+      .done(function (data) {
+        console.log('reserve success');
+        $this.toggleClass('reserved');
+        $this.next('.reserve-counter').html(data.comic_reserves_count);
+      })
+      .fail(function (jqXHR, textStatus, errorThrown) {
+        console.log('reserve fail');
+        console.log(jqXHR.responseText);
+      });
     });
 });

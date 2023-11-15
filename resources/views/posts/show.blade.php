@@ -42,9 +42,9 @@
                 }
             }
         </script>
-        <div class="footer">
-            <a href="/">戻る</a>
-        </div>
+        <form action="{{route('index')}}">
+            <button type="submit" name="understand" value="1">戻る</button>
+        </form>
     </body>
     </x-app-layout>
 </html>

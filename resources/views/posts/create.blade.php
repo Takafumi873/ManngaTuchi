@@ -22,9 +22,9 @@
         <input type="hidden" value="{{ Auth::user()->id }}" name="review[user_id]">
         <input type="submit" value="送信">
     </form>
-    <div class="footer">
-        <a href="/">戻る</a>
-    </div>
+　　<form action="{{route('index')}}">
+        <button type="submit" name="understand" value="1">戻る</button>
+    </form>
     </body>
     </x-app-layout>
 </html>

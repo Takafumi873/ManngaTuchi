@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Facade;
 
 return [
+    
+    'rakuten_id' => env('RAKUTEN_APPLICATION_ID', false),
+    'rakuten_key' => env('RAKUTEN_APPLICATION_SEACRET', false),
+
 
     /*
     |--------------------------------------------------------------------------

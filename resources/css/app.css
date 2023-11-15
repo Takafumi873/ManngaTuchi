@@ -9,10 +9,25 @@
     cursor: pointer;
 }
 
-.reserved {
-    color: rgb(0, 255, 0);
+.liked {
+    color: rgb(225, 58, 86);
 }
 
 .like-toggle {
     cursor: pointer;
+}
+
+.paginate {
+    display: flex;
+    justify-content: center;
+}
+
+.paginate .pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.paginate .pagination li {
+    margin: 0 5px; /* リンク間の余白 */
 }

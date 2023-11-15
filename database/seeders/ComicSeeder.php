@@ -14,24 +14,14 @@ class ComicSeeder extends Seeder
      *
      * @return void
      */
+     
     public function run()
     {
         DB::table('comics')->insert([
-            'title' => 'ワンピース',
-            'overview' => '海賊',
-            'released_at' => '2023_10_01',   
+            'title' => '呪術回線　２巻',
+            'overview' => '呪術',
+            'released_at' => '2023_11_05',   
             ]);
         
-        DB::table('comics')->insert([
-            'title' => '呪術',
-            'overview' => '呪',
-            'released_at' => '2023_11_01',   
-            ]);
-            
-        DB::table('comics')->insert([
-            'title' => '鬼滅',
-            'overview' => '鬼',
-            'released_at' => '2023_12_01',   
-            ]);
     }
 }

@@ -20,6 +20,3 @@ class ReviewController extends Controller
         return redirect()->route('show-post',['comic' => $comicId ]);
     }
 }
-
-$month = Carbon::now()->addMonth(1)->format('m');
-$comics = Comic::whereMonth('created_at',$month)->get();

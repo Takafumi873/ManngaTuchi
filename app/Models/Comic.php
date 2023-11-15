@@ -5,20 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Comic extends Model
 {
     use HasFactory;
     
     
     
-    public function getByLimit(int $limit_count = 5)
+    public function getByLimit(int $limit_count = 30)
     {
-        return $this->orderBy('released_at', 'ASC')->limit($limit_count)->get();
+        return $this->orderBy('released_at', 'DESC')->limit($limit_count)->get();
     }
     
-    public function getPaginateByLimit(int $limit_count = 5)
+    public function getPaginateByLimit(int $limit_count = 30)
     {
-        return $this->withcount('likes')->orderBy('released_at', 'ASC')->paginate($limit_count);
+        return $this->withcount('likes')->orderBy('released_at', 'DESC')->paginate($limit_count);
     }
     
     public function reviews()
@@ -49,3 +50,5 @@ class Comic extends Model
         return Reserve::where('user_id', $user->id)->where('comic_id', $this->id)->first() !==null;
         }
 }
+
+

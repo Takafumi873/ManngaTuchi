@@ -30,5 +30,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    
+    'rakuten' => [
+        'applicationId' => env('RAKUTEN_APPLICATION_ID'), // 環境変数からアプリケーションIDを取得
+    ],
 
 ];
